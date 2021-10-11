@@ -42,108 +42,27 @@ nuevas irán primero). Ante igualdad de fechas, se ordenará por el nombre del d
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "Perros.h"
 #include "Estadia.h"
+#include "Estadia-Perros.h"
 
-
+;
 int main(void)
 {
 	setbuf(stdout, NULL);
 
-	int opcionMenu;
+	int opcionMenu = 0;
 	int idEstadia = 100000;
 	int contadorEstadias = 0;
-	float promedio;
+	float promedio = 0;
 
 	sPerro perros[TAMPERROS];
 	sEstadiaDiaria estadias[TAMESTADIA];
 
 	estadia_inicializarEstadia(estadias, TAMESTADIA);
 	perros_hardCodear(perros, TAMPERROS);
-
-	do
-	{
-		pedirEntero(&opcionMenu, "------------------Menu------------------\n"
-									"1. RESERVAR ESTADIA.\n"
-									"2. MODIFICAR ESTADIA.\n"
-									"3. CANCELAR ESTADIA.\n"
-									"4. LISTAR ESTADIAS.\n"
-									"5. LISTAR PERROS.\n"
-									"6. Promedio de edad de los perros.\n"
-									"7. Salir\n"
-								"-----------------------------------------\n"
-									"Ingrese la opcion deseada: ",
-									"------------------Menu------------------\n"
-									"1. RESERVAR ESTADIA.\n"
-									"2. MODIFICAR ESTADIA.\n"
-									"3. CANCELAR ESTADIA.\n"
-									"4. LISTAR ESTADIAS.\n"
-									"5. LISTAR PERROS.\n"
-									"6. Promedio de edad de los perros.\n"
-									"7. Salir\n"
-								"-----------------------------------------\n"
-									"ERROR - Reingrese una opcion valida: \n", 1, 7);
-
-		switch(opcionMenu)
-		{
-			case 1 :
-				if(estadia_agregarUna(estadias, TAMESTADIA, &idEstadia) == 0)
-				{
-					contadorEstadias++;
-				}
-				system("pause");
-			break;
-			case 2 :
-				if(contadorEstadias > 0)
-				{
-					estadia_modificarUna(estadias, TAMESTADIA);
-				}
-				else
-				{
-					printf("ERROR - Aun no se ah agregado ninguna estadia.\n");
-				}
-			break;
-			case 3 :
-				if(contadorEstadias > 0)
-				{
-					estadia_borrarUna(estadias, TAMESTADIA);
-					contadorEstadias--;
-				}
-				else
-				{
-					printf("ERROR - Aun no se ah agregado ninguna estadia.\n");
-				}
-				system("pause");
-			break;
-			case 4 :
-				if(contadorEstadias > 0)
-				{
-					estadia_ordenarEstadia(estadias, TAMESTADIA);
-					printf("Ordenando estadias...");
-					system("pause");
-					estadia_listarVarias(estadias, TAMESTADIA);
-				}
-				else
-				{
-					printf("ERROR - Aun no se ah agregado ninguna estadia.\n");
-				}
-
-			break;
-			case 5 :
-				perros_listar(perros, TAMPERROS);
-				system("pause");
-			break;
-			case 6 :
-				promedio = perros_promediarEdad(perros, TAMPERROS);
-				perros_mostrarPromedio(promedio);
-			break;
-			case 7 :
-				printf("Cerrando el programa...");
-			break;
-		}
-
-
-	}while(opcionMenu != 7);
+	estadiaPerros_menuOpciones(estadias, opcionMenu, &idEstadia, perros, &contadorEstadias, promedio);
 
 	return EXIT_SUCCESS;
 }

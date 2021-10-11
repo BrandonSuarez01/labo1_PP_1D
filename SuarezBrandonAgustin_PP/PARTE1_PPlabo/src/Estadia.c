@@ -10,6 +10,7 @@
 #include "Estadia.h"
 #include "Perros.h"
 #include "Funciones.h"
+
 void estadia_inicializarEstadia(sEstadiaDiaria estadias[], int tam)
 {
 	int i;
@@ -69,7 +70,7 @@ int estadia_establecerEstadia(sEstadiaDiaria estadias[], int i, int id)
 	estadias[i].id = id;
 	pedirString(estadias[i].nombreDuenio, "Ingrese el nombre del dueño: ", "ERROR - reingrese el nombre correctamente: ", TAMNOMBREDOS);
 	pedirEntero(&estadias[i].telefonoContacto, "Ingrese el telefono del dueño: ", "ERROR - reingrese el numero correctamente: ", 10000000, 99999999);
-	pedirEntero(&estadias[i].idPerro, "Ingrese el ID del perro deseado: ", "ERROR - reingrese el ID correctamente: ",1000, 9999);
+	pedirEntero(&estadias[i].idPerro, "Ingrese el ID del perro deseado: ", "ERROR - reingrese el ID correctamente: ",7000, 7002);
 	pedirEntero(&estadias[i].fechaDia, "Ingrese el dia deseado (1 - 30): ", "ERROR - Ingrese un dia valido (1 - 30): ", 1, 30);
 	pedirEntero(&estadias[i].fechaMes, "Ingrese el mes deseado (1 - 12): ", "ERROR - Ingrese un mes valido (1 - 12): ", 1 , 12);
 
@@ -230,7 +231,7 @@ void estadia_mostrarModificacion(sEstadiaDiaria estadias[], int index, char* men
 {
 
 	printf("%s", mensaje);
-	printf("%-10s - %-20s - %-20s - %-20s - %-20s\n", "ID", "Nombre", "Telefono", "ID del Perro", "Fecha");
+	printf("%-10s - %-20s - %-20s - %-20s - %-20s\n\n", "ID", "Nombre", "Telefono", "ID del Perro", "Fecha");
 	printf("%-10d - %-20s - %-20d - %-20d - %d/%d\n", estadias[index].id, estadias[index].nombreDuenio, estadias[index].telefonoContacto, estadias[index].idPerro, estadias[index].fechaDia, estadias[index].fechaMes);
 }
 void estadia_listarUna(sEstadiaDiaria* estadias)
@@ -242,7 +243,7 @@ void estadia_listarVarias(sEstadiaDiaria estadias[], int tam)
 {
 	int i;
 
-	printf("%-10s - %-20s - %-20s - %-20s - %-20s\n", "ID", "Nombre", "Telefono", "ID del Perro", "Fecha");
+	printf("%-10s - %-20s - %-20s - %-20s - %-20s\n\n", "ID", "Nombre", "Telefono", "ID del Perro", "Fecha");
 	for(i = 0; i < tam; i++)
 	{
 		if(estadias[i].estado == OCUPADO)

@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "Funciones.h"
 #include "Perros.h"
 #include "Estadia.h"
@@ -34,22 +35,23 @@ int pedirEntero(int* enteroDevuelto, char* mensaje, char* mensajeError, int min,
 void pedirString(char* nombre, char* primerMensaje, char* mensajeError, int max)
 {
 	char nombreSinValidar[100];
-		int tam;
+	int tam;
 
-		printf("%s", primerMensaje);
+	printf("%s", primerMensaje);
+	fflush(stdin);
+	scanf("%[^\n]", nombreSinValidar);
+	tam = strlen(nombreSinValidar);
+
+	while(tam > max || validarSigno(nombreSinValidar) == 0)
+	{
+		printf("%s", mensajeError);
 		fflush(stdin);
 		scanf("%[^\n]", nombreSinValidar);
 		tam = strlen(nombreSinValidar);
+	}
 
-		while(tam > max)
-		{
-			printf("%s", mensajeError);
-			fflush(stdin);
-			scanf("%[^\n]", nombreSinValidar);
-			tam = strlen(nombreSinValidar);
-		}
+	strcpy(nombre, nombreSinValidar);
 
-		strcpy(nombre, nombreSinValidar);
 }
 int pedirFlotante(float* flotanteDevuelto, char* mensaje, char* mensajeError, int min, int max)
 {
@@ -68,7 +70,7 @@ int pedirFlotante(float* flotanteDevuelto, char* mensaje, char* mensajeError, in
 
 		*flotanteDevuelto = numeroIngresado;
 
-		return 0;
+	return 0;
 }
 void pedirCaracter(char* caracter, char* mensaje)
 {
@@ -76,6 +78,34 @@ void pedirCaracter(char* caracter, char* mensaje)
 	fflush(stdin);
 	scanf("%s", caracter);
 }
+int validarSigno(char* string)
+{
+	int i;
+	int tam;
+	int retorno = -1;
+	int devolucion;
 
+	if(string != NULL)
+	{
+		tam = strlen(string);
 
+		for(i = 0; i < tam; i++)
+		{
+			devolucion = isdigit(string[i]);
+
+			if(devolucion == 1 || string[i] == '/' || string[i] == '.' || string[i] == '?'
+				|| string[i] == '{' || string[i] == '}' || string[i] == '[' || string[i] == ']'
+				|| string[i] == '_' || string[i] =='-'  || string[i] == ';' || string[i] == ':'
+				|| string[i] == '*' || string[i] == '+' || string[i] == '¿' || string[i] == '"'
+				|| string[i] == '!' || string[i] == '|' || string[i] ==  '#'|| string[i] == '<'
+				|| string[i] == '>' || string[i] == '=' || string[i] == '@' || string[i] == ','
+				|| string[i] == '(' || string[i] == ')' || string[i] == '%' || string[i] == '&')
+			{
+				retorno = 0;
+				break;
+			}
+		}
+	}
+	return retorno;
+}
 

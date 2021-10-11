@@ -31,6 +31,7 @@ typedef struct
 
 }sEstadiaDiaria;
 
+
 void estadia_inicializarEstadia(sEstadiaDiaria estadias[], int tam);
 int estadia_buscarEspacio(sEstadiaDiaria estadias[], int tam);
 int estadia_agregarUna(sEstadiaDiaria estadias[], int tam, int* id);
