@@ -46,20 +46,20 @@ int estadia_agregarUna(sEstadiaDiaria estadias[], int tam, int* id)
 	{
 		if(!estadia_establecerEstadia(estadias, index, *id))
 		{
-			printf("Se establecio la estadia.\n\n");
+			printf("Se establecio la estadia.\n");
 			idIncrementada++;
 			*id = idIncrementada;
 
 		}
 		else
 		{
-			printf("Se cancelo la carga de la estadia.\n\n");
+			printf("Se cancelo la carga de la estadia.\n");
 		}
 		retorno = 0;
 	}
 	else
 	{
-		printf("NO hay espacio disponible.\n\n");
+		printf("NO hay espacio disponible.\n");
 	}
 	return retorno;
 }
@@ -69,7 +69,7 @@ int estadia_establecerEstadia(sEstadiaDiaria estadias[], int i, int id)
 
 	estadias[i].id = id;
 	pedirString(estadias[i].nombreDuenio, "Ingrese el nombre del dueño: ", "ERROR - reingrese el nombre correctamente: ", TAMNOMBREDOS);
-	pedirEntero(&estadias[i].telefonoContacto, "Ingrese el telefono del dueño: ", "ERROR - reingrese el numero correctamente: ", 10000000, 99999999);
+	pedirEntero(&estadias[i].telefonoContacto, "Ingrese el telefono del dueño(Hasta 8 digitos): ", "ERROR - reingrese el numero correctamente(Hasta 8 digitos): ", 10000000, 99999999);
 	pedirEntero(&estadias[i].idPerro, "Ingrese el ID del perro deseado: ", "ERROR - reingrese el ID correctamente: ",7000, 7002);
 	pedirEntero(&estadias[i].fechaDia, "Ingrese el dia deseado (1 - 30): ", "ERROR - Ingrese un dia valido (1 - 30): ", 1, 30);
 	pedirEntero(&estadias[i].fechaMes, "Ingrese el mes deseado (1 - 12): ", "ERROR - Ingrese un mes valido (1 - 12): ", 1 , 12);
@@ -139,11 +139,12 @@ int estadia_modificarUna(sEstadiaDiaria estadias[], int tam)
 	pedirEntero(&idIngresada, "Ingrese el ID de la estadia a modificar: ", "ERROR - Esa ID no existe, reingrese: ", 100000, 100003);
 	index = estadia_buscarPorId(estadias, tam, idIngresada);
 
-	pedirEntero(&opcionSubMenu, "1. Modificar telefono\n"
+	pedirEntero(&opcionSubMenu, "----------MODIFICAR----------\n"
+								"1. Modificar telefono\n"
 								"2. Modificar id del Perro\n"
 								"---------------------------\n"
 								"Ingrese la opcion deseada: ",
-								"---------------------------\n"
+								"----------MODIFICAR----------\n"
 								"1. Modificar telefono\n"
 								"2. Modificar id del Perro\n"
 								"---------------------------\n"

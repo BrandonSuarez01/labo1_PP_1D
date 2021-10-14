@@ -33,7 +33,7 @@ void estadiaPerros_menuOpciones(sEstadiaDiaria estadias[], int opcionMenu, int *
 										"6. Promedio de edad de los perros.\n"
 										"7. Salir\n"
 									"-----------------------------------------\n"
-										"ERROR - Reingrese una opcion valida: \n", 1, 7);
+										"ERROR - Reingrese una opcion valida: ", 1, 7);
 
 			switch(opcionMenu)
 			{
