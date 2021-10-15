@@ -12,6 +12,8 @@
 
 #ifndef FUNCIONES_H_
 #define FUNCIONES_H_
+
+int pedirEnteroLong(long int* enteroDevuelto, char* mensaje, char* mensajeError, int min, int max);
 /**
  * @fn int pedirEntero(int*, char*, char*, int, int)
  * @brief da valor de un numero entero a una varible que recibe por referencia y valida en un rango determinado.
